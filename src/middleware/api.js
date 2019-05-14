@@ -31,29 +31,29 @@ const api = store => next => action => {
         store.dispatch(loginFun(data));
     });
 
-    if (action.type !== actions.API) {
-        return next({
-            ...action,
-            a: 123
-        });
-    }
-
-    const {url, success, schema, label} = action.payload;
-
-    const states = store.getState();
-    console.log(states)
-
-    // dispatch(startNetwork(label));
-    fetch(url).then(response => response.json())
-        .then(data => {
-            store.dispatch(loginFun(data));
-            // dispatch(endNetwork(label));
-
-        })
-        .catch(error => {
-            console.error(error);
-            // dispatch(endNetwork(label))
-        })
+    // if (action.type !== actions.API) {
+    //     return next({
+    //         ...action,
+    //         a: 123
+    //     });
+    // }
+    //
+    // const {url, success, schema, label} = action.payload;
+    //
+    // const states = store.getState();
+    // console.log(states)
+    //
+    // // dispatch(startNetwork(label));
+    // fetch(url).then(response => response.json())
+    //     .then(data => {
+    //         store.dispatch(loginFun(data));
+    //         // dispatch(endNetwork(label));
+    //
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //         // dispatch(endNetwork(label))
+    //     })
 };
 
 
