@@ -7,7 +7,7 @@ export const loginFun=(params)=>{
     console.log(params);
 
     return {
-        type: "SET_AUTHORS",
+        type: params.type,
         params
     }
 }

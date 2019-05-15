@@ -10,9 +10,10 @@ import {Provider} from 'react-redux';
 
 import log from './middleware/log';
 import api from './middleware/api';
+import response from './middleware/response';
 
 var createStoreWithMiddleware;
-const middlewares = [thunk,api];
+const middlewares = [thunk,api,response];
 createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 let store = createStoreWithMiddleware(rootReducer);
 ReactDOM.render(

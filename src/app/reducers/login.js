@@ -7,14 +7,14 @@ const initialState = {};
 
 
 export default function handleActions(state = initialState, action) {
-    // console.log(action)
+    console.log(action)
 
     switch (action.type) {
 
         case "START_NETWORK":
         case "END_NETWORK":
             return initialState;
-        case "SET_AUTHORS":
+        case "REGISTRATION_SUBMIT_SUCCESS":
 
             return Object.assign({}, state,action.params);
             break

@@ -5,7 +5,7 @@ import {path, isNil} from "ramda";
 
 import {startNetwork, endNetwork} from '../app/actions/ui';
 import {FetchPost} from "./service"
-import  {loginApiCall} from "./config"
+import  {loginApiCall} from "./api-config"
 const bootstrapApiCallMiddlewareConfig = {
     ...loginApiCall,
 };
@@ -17,7 +17,7 @@ const api = store => next => action => {
         [context, type],
         bootstrapApiCallMiddlewareConfig
     );
-    console.log(configForAction);
+    // console.log(configForAction);
 
     if (!configForAction) {
         return next({
@@ -25,10 +25,20 @@ const api = store => next => action => {
         });
     }
     const apiCallPayload = configForAction.payloadBuilder({store, action});
-
+    let extraParams = {
+        context,
+        type,
+    };
     FetchPost().then(data=>{
-        console.log(data)
-        store.dispatch(loginFun(data));
+        // console.log(data)
+        // store.dispatch(loginFun(data));
+        return next({
+            payload: {
+                ...action.payload,
+                ...data
+            },
+            extraParams
+        });
     });
 
     // if (action.type !== actions.API) {
